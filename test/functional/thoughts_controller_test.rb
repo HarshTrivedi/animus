@@ -39,6 +39,17 @@ class ThoughtsControllerTest < ActionController::TestCase
     assert_redirected_to thought_path(assigns(:thought))
   end
 
+  test "should be able to post for current sapien when logged in" do
+    sign_in sapiens(:shubham)
+
+    assert_difference('Thought.count') do
+      post :create, thought: { content: @thought.content, sapien_id: sapiens(:harsh).id }
+    end
+
+    assert_redirected_to thought_path(assigns(:thought))
+    assert_equal assigns(:thought).sapien_id, sapiens(:shubham).id
+  end
+
   test "should show thought" do
     get :show, id: @thought
     assert_response :success
@@ -56,7 +67,26 @@ class ThoughtsControllerTest < ActionController::TestCase
     assert_redirected_to new_sapien_session_path
   end
 
-  
+  test "should update when logged in" do
+    sign_in sapiens(:shubham)
+    put :update, id: @thought, thought: { content: @thought.content}
+    assert_response :redirect
+    assert_redirected_to thought_path(assigns(:thought))
+  end
+
+  test "should update for curent sapien when logged in" do
+    sign_in sapiens(:shubham)
+    put :update, id: @thought, thought: { content: @thought.content, sapien_id: sapiens(:harsh).id }
+    assert_redirected_to thought_path(assigns(:thought))
+    assert_equal assigns(:thought).sapien_id, sapiens(:shubham).id
+  end
+
+  test "should not update thought when nothing has changed" do
+    sign_in sapiens(:shubham)
+    put :update, id: @thought
+    assert_redirected_to thought_path(assigns(:thought))
+    assert_equal assigns(:thought).sapien_id, sapiens(:shubham).id
+  end
 
   test "should destroy thought" do
     assert_difference('Thought.count', -1) do

@@ -41,7 +41,7 @@ class ThoughtsController < ApplicationController
   # POST /thoughts
   # POST /thoughts.json
   def create
-    @thought = Thought.new(params[:thought])
+    @thought = current_sapien.thoughts.new(params[:thought])
 
     respond_to do |format|
       if @thought.save
@@ -57,7 +57,11 @@ class ThoughtsController < ApplicationController
   # PUT /thoughts/1
   # PUT /thoughts/1.json
   def update
-    @thought = Thought.find(params[:id])
+    @thought = current_sapien.thoughts.find(params[:id])
+    
+    if params[:thought] && params[:thought].has_key?(:sapien_id)
+      params[:thought].delete(:sapien_id) 
+    end
 
     respond_to do |format|
       if @thought.update_attributes(params[:thought])
