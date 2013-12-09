@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animus</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header id="mainNavBar">
+		Shubham
+		<ul>
+			<% if sapien_signed_in? %>
+				<li><%= link_to current_sapien.agnomen, edit_sapien_registration_path %></li>
+				<li><%= link_to "Sign Out", destroy_sapien_session_path, method: :delete %></li>
+			<% else %>
+				<li><%= link_to "Sign In", new_sapien_session_path %></li>
+				<li><%= link_to "Sign Up", new_sapien_registration_path %></li>
+			<% end %>
+		</ul>
+	</header>
+	<div>
+	    <!--<% if flash[:notice]%>
+	    	<div class="alert">
+	    		<button class="close" data-dismiss="alert">x</button>
+	    		<% flash[:notice] %>
+	    	</div> 
+	    <% end %> -->
+		<%= yield %>
+	</div>
+</body>
+</html>
