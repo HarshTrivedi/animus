@@ -20,4 +20,9 @@ class CustomRoutesTest < ActionDispatch::IntegrationTest
   	get "/register"
   	assert_response :success
   end
+
+  test "that profile page works" do
+    get '/shubham'
+    assert_response :success
+  end
 end
