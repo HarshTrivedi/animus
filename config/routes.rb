@@ -1,4 +1,6 @@
 Animus::Application.routes.draw do
+  get "profiles/show"
+
   devise_for :sapiens
 
   devise_scope :sapien do
@@ -9,6 +11,7 @@ Animus::Application.routes.draw do
   resources :thoughts
   root to: 'thoughts#index'
 
+  get '/:id', to: 'profiles#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

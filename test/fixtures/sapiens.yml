@@ -1,4 +1,7 @@
 shubham:
     agnomen: "Shubham"
-    email: "shubhpatel108@gmail.com"
-    encrypted_password: "password"
+    email: "example@example.com"
+
+harsh:
+    agnomen: "harsh"
+    email: "mail@mail.com"

@@ -1,0 +1,10 @@
+<h1>Profiles#show</h1>
+<p><%= @sapien.agnomen %></p>
+
+<%if @thoughts %>
+	<% @thoughts.each do |thought|%>
+		<%= link_to thought.content, thought_path(thought) %>
+		<%= time_ago_in_words(thought.created_at) %> ago
+		<br>
+	<%end%>
+<%end%>
