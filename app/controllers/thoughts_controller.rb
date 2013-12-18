@@ -11,6 +11,15 @@ class ThoughtsController < ApplicationController
     end
   end
 
+  def my_thoughts
+    @public_thoughts = current_sapien.thoughts.where(:private => false)
+    @personal_thoughts = current_sapien.thoughts.where(:private => true)
+    respond_to do |format|
+      format.html # my_thoughts.html.erb
+      format.json { render json: @thought }
+    end
+  end
+
   # GET /thoughts/1
   # GET /thoughts/1.json
   def show
@@ -35,7 +44,7 @@ class ThoughtsController < ApplicationController
 
   # GET /thoughts/1/edit
   def edit
-    @thought = Thought.find(params[:id])
+    @thought = current_sapien.thoughts.find(params[:id])
   end
 
   # POST /thoughts
@@ -77,7 +86,7 @@ class ThoughtsController < ApplicationController
   # DELETE /thoughts/1
   # DELETE /thoughts/1.json
   def destroy
-    @thought = Thought.find(params[:id])
+    @thought = current_sapien.thoughts.find(params[:id])
     @thought.destroy
 
     respond_to do |format|

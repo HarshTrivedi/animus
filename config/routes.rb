@@ -1,6 +1,7 @@
 Animus::Application.routes.draw do
-  get "profiles/show"
+  root to: 'thoughts#index'
 
+  get "thoughts/my_thoughts", as: :my_thoughts
   devise_for :sapiens
 
   devise_scope :sapien do
@@ -9,7 +10,6 @@ Animus::Application.routes.draw do
     get 'logout', to: 'devise/sessions#destroy', as: :logout
   end
   resources :thoughts
-  root to: 'thoughts#index'
 
   get '/:id', to: 'profiles#show'
   # The priority is based upon order of creation:

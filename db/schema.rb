@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207194514) do
+ActiveRecord::Schema.define(:version => 20131218125513) do
 
   create_table "sapiens", :force => true do |t|
     t.string   "agnomen"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20131207194514) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "sapien_id"
+    t.boolean  "private",    :default => false
   end
 
   add_index "thoughts", ["sapien_id"], :name => "index_thoughts_on_sapien_id"
