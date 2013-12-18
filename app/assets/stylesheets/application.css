@@ -53,3 +53,38 @@ body
   right: -21px;
   line-height: 20px;
 }
+
+.centerallign
+{
+  text-align: center;
+}
+
+.thought
+{
+  min-height: 200px;
+  width: 250px;
+  font-size: 24px;
+  border: 1px solid black;
+  word-wrap: break-word;
+  float: left;
+  margin: 10px;
+  box-shadow: 1px 1px 1px blue;
+  border-radius: 6px;
+  padding: 5px;
+  text-align: center;
+  background-color: #3ee34a;  
+}
+.thought > .functions
+{
+  font-size: 14px;
+}
+
+.thought > .content
+{
+  min-height: 150px;
+  overflow: auto;
+}
+.panel-body
+{
+  width: 100%;
+}

@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>Name</th>
     <th>Content</th>
+    <th>Sapien</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,6 +12,7 @@
 <% @thoughts.each do |thought| %>
   <tr>
     <td><%= thought.content %></td>
+    <td><%= thought.sapien.agnomen %></td>
     <td><%= link_to 'Show', thought %></td>
     <td><%= link_to 'Edit', edit_thought_path(thought) %></td>
     <td><%= link_to 'Destroy', thought, method: :delete, data: { confirm: 'Are you sure?' } %></td>

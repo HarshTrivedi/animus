@@ -1,0 +1,55 @@
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title centerallign">
+        <a data-toggle="collapse" data-parent="#accordion" href="#personalthoughts" >
+          Personal Thoughts
+        </a>
+      </h4>
+    </div>
+    <div id="personalthoughts" class="panel-collapse collapse in">
+      <div class="panel-body">
+		<% @personal_thoughts.each do |thought| %>
+			<div class="thought">
+				<div class="content">
+					<%= thought.content %>
+				</div>
+				<div class="functions">
+					<%= link_to 'Show', thought %>
+				    <%= link_to 'Edit', edit_thought_path(thought) %>
+				    <td><%= link_to 'Destroy', thought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</div>
+			</div>
+		<% end %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title centerallign">
+        <a data-toggle="collapse" data-parent="#accordion" href="#publicthoughts">
+          Public Thoughts
+        </a>
+      </h4>
+    </div>
+    <div id="publicthoughts" class="panel-collapse collapse">
+      <div class="panel-body">
+		<% @public_thoughts.each do |thought| %>
+			<div class="thought">
+				<div class="content">
+					<%= thought.content %>
+				</div>
+				<div class="functions">
+					<%= link_to 'Show', thought %>
+				    <%= link_to 'Edit', edit_thought_path(thought) %>
+				    <td><%= link_to 'Destroy', thought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</div>
+			</div>
+		<% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
