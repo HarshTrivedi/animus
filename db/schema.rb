@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131218125513) do
+ActiveRecord::Schema.define(:version => 20131219025408) do
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "admirer_id"
+    t.integer  "inspirer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "relationships", ["admirer_id"], :name => "index_relationships_on_admirer_id"
+  add_index "relationships", ["inspirer_id"], :name => "index_relationships_on_inspirer_id"
 
   create_table "sapiens", :force => true do |t|
     t.string   "agnomen"
@@ -34,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20131218125513) do
 
   create_table "thoughts", :force => true do |t|
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "sapien_id"
     t.boolean  "private",    :default => false
   end

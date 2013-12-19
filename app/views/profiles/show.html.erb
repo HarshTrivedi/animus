@@ -1,5 +1,8 @@
 <h1>Profiles#show</h1>
+<h2><%= current_sapien.agnomen %></h2>
 <p><%= @sapien.agnomen %></p>
+<%= render 'profiles/stats' %>
+<%= render 'admire_form' if signed_in? %>
 
 <%if @thoughts %>
 	<% @thoughts.each do |thought|%>

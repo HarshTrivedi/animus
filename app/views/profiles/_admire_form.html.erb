@@ -1,0 +1,9 @@
+<% if  not current_sapien == (@sapien) %>
+	<div>
+		<% if current_sapien.inspired?(@sapien) %>
+			<%= render 'disadmire'%>
+		<% else %>
+			<%= render 'admire'%>
+		<% end %>
+	</div>
+<% end %>

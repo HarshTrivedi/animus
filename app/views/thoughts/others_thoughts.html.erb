@@ -1,0 +1,21 @@
+<div class="panel-body">
+    <% @inspirers.each do |person| %>
+      <% for thought in person.thoughts %>
+        <% if not thought.private %>
+          <div class="thought">
+            <div class="content">
+              <%= thought.content %>
+            </div>
+            <div class="author">
+              <%= person.agnomen %>
+            </div>
+            <div class="functions">
+              <%= link_to 'Show', thought %>
+                <%= link_to 'Edit', edit_thought_path(thought) %>
+                <td><%= link_to 'Destroy', thought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </div>
+          </div>
+          <%end%>
+      <% end %>
+    <% end %>
+</div>  

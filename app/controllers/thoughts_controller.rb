@@ -20,6 +20,14 @@ class ThoughtsController < ApplicationController
     end
   end
 
+  def others_thoughts
+    @inspirers = current_sapien.inspirers
+    respond_to do |format|
+      format.html # my_thoughts.html.erb
+      format.json { render json: @thought }
+    end
+  end
+
   # GET /thoughts/1
   # GET /thoughts/1.json
   def show

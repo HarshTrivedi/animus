@@ -1,7 +1,8 @@
 Animus::Application.routes.draw do
   root to: 'thoughts#index'
-
   get "thoughts/my_thoughts", as: :my_thoughts
+  get "thoughts/others_thoughts", as: :others_thoughts
+
   devise_for :sapiens
 
   devise_scope :sapien do
@@ -9,9 +10,14 @@ Animus::Application.routes.draw do
     get 'login', to: 'devise/sessions#new', as: :login
     get 'logout', to: 'devise/sessions#destroy', as: :logout
   end
-  resources :thoughts
 
-  get '/:id', to: 'profiles#show'
+
+  resources :thoughts
+  resources :relationships, :only => [:create, :destroy]
+  get '/:id', to: 'profiles#show', as: :profile
+
+  get '/:id/inspirers', to: 'profiles#inspirers', as: :inspirers
+  get '/:id/admirer', to: 'profiles#admirers', as: :admirers
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

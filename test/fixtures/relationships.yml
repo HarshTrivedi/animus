@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  admirer_id: 1
+  inspirer_id: 1
+
+two:
+  admirer_id: 1
+  inspirer_id: 1
