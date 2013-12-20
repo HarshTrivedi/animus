@@ -1,3 +1,7 @@
+<div>
+  <%= link_to "New Thought", new_thought_path %>
+</div>
+
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -9,7 +13,7 @@
     </div>
     <div id="personalthoughts" class="panel-collapse collapse in">
       <div class="panel-body">
-		<% @personal_thoughts.each do |thought| %>
+		    <% @personal_thoughts.each do |thought| %>
 			<div class="thought">
 				<div class="content">
 					<%= thought.content %>
@@ -39,6 +43,9 @@
 				<div class="content">
 					<%= thought.content %>
 				</div>
+        <div class="heart">
+          <%= thought.hearts %>
+        </div>
 				<div class="functions">
 					<%= link_to 'Show', thought %>
 				    <%= link_to 'Edit', edit_thought_path(thought) %>

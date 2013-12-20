@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219025408) do
+ActiveRecord::Schema.define(:version => 20131219093611) do
 
   create_table "relationships", :force => true do |t|
     t.integer  "admirer_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20131219025408) do
     t.datetime "updated_at",                    :null => false
     t.integer  "sapien_id"
     t.boolean  "private",    :default => false
+    t.integer  "hearts",     :default => 0
   end
 
   add_index "thoughts", ["sapien_id"], :name => "index_thoughts_on_sapien_id"

@@ -1,5 +1,5 @@
 class ThoughtsController < ApplicationController
-  before_filter :authenticate_sapien!, only: [:new, :create, :update, :edit]
+  before_filter :authenticate_sapien!, only: [:my_thoughts, :others_thoughts, :add_heart, :new, :create, :update, :edit]
   # GET /thoughts
   # GET /thoughts.json
   def index
@@ -26,6 +26,13 @@ class ThoughtsController < ApplicationController
       format.html # my_thoughts.html.erb
       format.json { render json: @thought }
     end
+  end
+
+  def add_heart
+    @thought = Thought.find(params[:id])
+    @thought.hearts += 1;
+    @thought.save!
+    redirect_to others_thoughts_path
   end
 
   # GET /thoughts/1
