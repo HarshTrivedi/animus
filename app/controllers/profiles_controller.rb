@@ -24,4 +24,16 @@ class ProfilesController < ApplicationController
       format.json { render json: @sapien_admirers }
     end
   end
+
+  def search
+    @search = params['search']
+    logger.info(@search)
+    @sapien_by_agnomen = Sapien.find_by_agnomen(@search)
+    @sapien_by_email = Sapien.find_by_email(@search)
+    @sapien = @sapien_by_agnomen || @sapien_by_email
+    respond_to do |format|
+      format.html
+      format.json { render json: @sapien_admirers }
+    end
+  end
 end
