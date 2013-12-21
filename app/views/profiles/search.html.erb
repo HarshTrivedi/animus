@@ -1,1 +1,5 @@
-<%= @sapien.agnomen%>
+<div>
+	<% @sapien_list.each do |person| %>
+			<%= render 'profiles/person', :per => person %>
+	<% end %>
+</div>

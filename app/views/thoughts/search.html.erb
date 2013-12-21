@@ -1,0 +1,22 @@
+<% @thoughts.each do |thought|%>
+    <% if not thought.private %>
+      <div class="thought">
+        <div class="content">
+          <%= thought.content %>
+        </div>
+        <!-- <div class="heart">
+          <%= link_to thought.hearts, add_heart_path(thought.id) %>
+        </div> -->
+        <form action="/rate/<%=thought.id%>">
+          <div>
+            <button class= "heartyum" type="submit"> <%= thought.hearts%> </button>
+          </div>
+        </form>
+        <div class="author">
+          <%= thought.sapien.agnomen %>
+        </div>
+      </div>
+  <% end %>
+<%end%>
+
+<%= link_to "Back", others_thoughts_path %>

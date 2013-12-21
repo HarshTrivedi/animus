@@ -1,4 +1,6 @@
-<% @sapien.inspirers.each do |inspirer| %>
-	<%= inspirer.agnomen %>
-	<hr/>
-<% end %>
+<div>
+	<% @sapien.inspirers.each do |person| %>
+		<%= render 'profiles/person', :per => person%>
+	<% end %>
+
+</div>

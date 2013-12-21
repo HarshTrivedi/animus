@@ -1,0 +1,12 @@
+// $("amiraj").update("<%= escape_javascript(render('profiles/admire'))%>")
+// logger.info("----------------------------------------")
+// $("inspi").update("<%= current_sapien.inspirers.count %>")
+
+var mydiv = document.getElementById('form_of_admiration');
+mydiv.innerHTML="<%= escape_javascript(render('profiles/admire'))%>";
+
+var mydiv = document.getElementById('numberofinspirers');
+mydiv.innerHTML="<%= current_sapien.inspirers.count%>";
+
+var mydiv = document.getElementById('numberofadmirers');
+mydiv.innerHTML="<%= @sapien.admirers.count%>";

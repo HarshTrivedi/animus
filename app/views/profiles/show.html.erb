@@ -1,9 +1,10 @@
-<h1>Profiles#show</h1>
-<h2><%= current_sapien.agnomen %></h2>
-<p><%= @sapien.agnomen %></p>
+<div class="profilepage">
+<h3><%= @sapien.agnomen %></h3>
+<%= image_tag(@sapien.avatar, :size => "200x200")%><br/>
 <%= render 'profiles/stats' %>
 <%= render 'admire_form' if signed_in? %>
-
+<!-- <audio src="/audios/music.mp3" autoplay controls></audio> -->
+<h4><%= @sapien.agnomen %>'s public thoughts</h4>
 <%if @thoughts %>
 	<% @thoughts.each do |thought|%>
 		<%= link_to thought.content, thought_path(thought) %>
@@ -11,3 +12,4 @@
 		<br>
 	<%end%>
 <%end%>
+</div>

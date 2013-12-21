@@ -26,14 +26,21 @@ class ProfilesController < ApplicationController
   end
 
   def search
-    @search = params['search']
+    search_string = params['search']
+    @sapien_list = Sapien.where(["agnomen like ?", "%#{search_string}%"])
     logger.info(@search)
-    @sapien_by_agnomen = Sapien.find_by_agnomen(@search)
-    @sapien_by_email = Sapien.find_by_email(@search)
-    @sapien = @sapien_by_agnomen || @sapien_by_email
-    respond_to do |format|
-      format.html
-      format.json { render json: @sapien_admirers }
+    logger.info("------------------------------------------------------------")
+    if @sapien_list!=nil
+      respond_to do |format|
+        format.html
+        format.json { render json: @sapien_admirers }
+      end 
+    else
+      redirect_to :my_thoughts
     end
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: @sapien_admirers }
+    # end
   end
 end

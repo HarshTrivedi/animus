@@ -3,7 +3,7 @@ Animus::Application.routes.draw do
   get "thoughts/my_thoughts", as: :my_thoughts
   get '/rate/:id', to: 'thoughts#add_heart', as: :add_heart
   get "thoughts/others_thoughts", as: :others_thoughts
-
+  get "thoughts/search", to: 'thoughts#search'
   devise_for :sapiens
 
   devise_scope :sapien do
@@ -15,8 +15,9 @@ Animus::Application.routes.draw do
 
   resources :thoughts
   resources :relationships, :only => [:create, :destroy]
+  get '/create', to: 'registrations#create'
   get '/:id', to: 'profiles#show', as: :profile
-
+  match 'devise/profiles/search', to: 'profiles#search'
   get '/:id/inspirers', to: 'profiles#inspirers', as: :inspirers
   get '/:id/admirers', to: 'profiles#admirers', as: :admirers
   # The priority is based upon order of creation:

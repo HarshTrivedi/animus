@@ -2,11 +2,11 @@
 	<a href="<%= inspirers_path(@sapien.agnomen) %>">
 		<%= pluralize(@sapien.inspirers.count, "inspirer") %>
 	</a>
-
+	<br/>
 	<a href="<%= admirers_path(@sapien.agnomen) %>">
 		<%= pluralize(@sapien.admirers.count, "admirer") %>
 	</a>
 <% else %>
-	<%= pluralize(@sapien.inspirers.count, "inspirer") %>
-	<%= pluralize(@sapien.admirers.count, "admirer") %>
+	<%= @sapien.inspirers.count %>Inspirers<br/>
+	<span id="numberofadmirers"><%= @sapien.admirers.count %></span>Admirers
 <% end %>

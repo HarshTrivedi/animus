@@ -1,3 +1,13 @@
+<div>
+  <form action="/thoughts/search">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search thought" name="search">
+      <span class="input-group-btn">
+        <button class="btn btn-success" style="display: none;"type="submit">Go!</button>
+      </span>
+    </div>
+  </form>
+</div>
 <div class="bodyothers">
     <% @inspirers.each do |person| %>
       <% for thought in person.thoughts %>
@@ -6,16 +16,16 @@
             <div class="content">
               <%= thought.content %>
             </div>
-            <div class="heart">
+            <!-- <div class="heart">
               <%= link_to thought.hearts, add_heart_path(thought.id) %>
-            </div>
+            </div> -->
+            <form action="/rate/<%=thought.id%>">
+              <div>
+                <button class= "heartyum" type="submit"> <%= thought.hearts%> </button>
+              </div>
+            </form>
             <div class="author">
               <%= person.agnomen %>
-            </div>
-            <div class="functions">
-              <%= link_to 'Show', thought %>
-                <%= link_to 'Edit', edit_thought_path(thought) %>
-                <td><%= link_to 'Destroy', thought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </div>
           </div>
           <%end%>

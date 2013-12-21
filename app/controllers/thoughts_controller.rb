@@ -23,7 +23,7 @@ class ThoughtsController < ApplicationController
   def others_thoughts
     @inspirers = current_sapien.inspirers
     respond_to do |format|
-      format.html # my_thoughts.html.erb
+      format.html # others_thoughts.html.erb
       format.json { render json: @thought }
     end
   end
@@ -33,6 +33,21 @@ class ThoughtsController < ApplicationController
     @thought.hearts += 1;
     @thought.save!
     redirect_to others_thoughts_path
+  end
+
+  def search
+    search_string = params['search']
+    logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    @thoughts = Thought.where(["content like ? and private is ?", "%#{search_string}%", false])
+    
+    if @thoughts!=nil
+      respond_to do |format|
+        format.html
+        format.json { render json: @thoughts }
+      end
+    else
+      redirect_to others_thoughts_path
+    end   
   end
 
   # GET /thoughts/1
@@ -69,7 +84,7 @@ class ThoughtsController < ApplicationController
 
     respond_to do |format|
       if @thought.save
-        format.html { redirect_to @thought, notice: 'Thought was successfully created.' }
+        format.html { redirect_to my_thoughts_path, notice: 'Thought was successfully created.' }
         format.json { render json: @thought, status: :created, location: @thought }
       else
         format.html { render action: "new" }
@@ -89,7 +104,7 @@ class ThoughtsController < ApplicationController
 
     respond_to do |format|
       if @thought.update_attributes(params[:thought])
-        format.html { redirect_to @thought, notice: 'Thought was successfully updated.' }
+        format.html { redirect_to @my_thought, notice: 'Thought was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -105,7 +120,7 @@ class ThoughtsController < ApplicationController
     @thought.destroy
 
     respond_to do |format|
-      format.html { redirect_to thoughts_url }
+      format.html { redirect_to my_thoughts_url }
       format.json { head :no_content }
     end
   end

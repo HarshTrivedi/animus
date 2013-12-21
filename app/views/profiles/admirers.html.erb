@@ -1,4 +1,5 @@
+<div>
 <% @sapien.admirers.each do |admirer| %>
-	<%= admirer.agnomen %>
-	<hr/>
+		<%= render 'profiles/person', :per => admirer %>
 <% end %>
+</div>

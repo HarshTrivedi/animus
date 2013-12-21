@@ -1,4 +1,4 @@
-<%= form_for(current_sapien.relationships.build(:inspirer_id => @sapien.id)) do |f| %>
+<%= form_for(current_sapien.relationships.build(:inspirer_id => @sapien.id), :remote => true) do |f| %>
 <div><%= f.hidden_field :inspirer_id %></div>
 <div class="actions"><%= f.submit "Admire"%></div>
 <% end %>

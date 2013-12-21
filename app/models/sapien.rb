@@ -5,7 +5,7 @@ class Sapien < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :remember_me, :agnomen	
+  attr_accessible :email, :password, :remember_me, :agnomen, :avatar
   validates :agnomen, presence: true, 
   					  uniqueness: true,
   					  format: {
@@ -13,6 +13,9 @@ class Sapien < ActiveRecord::Base
   					  	message: 'Must be formatted correctly.'
   					  }
 
+  has_attached_file :avatar, :default_url => '/assets/heart4.png'
+  validates_attachment_size :avatar, :less_than => 4.megabytes
+  validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/
   # attr_accessible :title, :body
   has_many :thoughts
   has_many :relationships, :dependent => :destroy,
@@ -23,6 +26,7 @@ class Sapien < ActiveRecord::Base
   has_many :inspirers, :through => :relationships, :source => :inspirer
   has_many :admirers, :through => :reverse_relationships, :source => :admirer
 
+  after_create :send_welcome_mail
   def inspired?(inspirer)
     relationships.find_by_inspirer_id(inspirer)
   end
@@ -33,5 +37,9 @@ class Sapien < ActiveRecord::Base
 
   def disadmire!(inspirer)
     relationships.find_by_inspirer_id(inspirer).destroy
+  end
+
+  def send_welcome_mail
+    SapienMailer.welcome(self).deliver
   end
 end

@@ -1,4 +1,4 @@
-<%= form_for(current_sapien.relationships.find_by_inspirer_id(@sapien.id), :html => {:method => :delete}) do |f| %>
+<%= form_for(current_sapien.relationships.find_by_inspirer_id(@sapien.id), :html => {:method => :delete}, :remote => true) do |f| %>
 	<div class="actions">
 		<%= f.submit "DisAdmire" %>
 	</div>

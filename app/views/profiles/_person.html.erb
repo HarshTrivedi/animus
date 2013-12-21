@@ -1,0 +1,14 @@
+<div class="person">
+	<a href="../<%= per.agnomen%>">
+		<div class="smallphoto">
+			<%= image_tag(per.avatar, :size =>"40x40") %>
+		</div>
+		<div class="centerallign">
+			<h4><%= per.agnomen %><h4>
+		</div>
+	</a>
+	<div class="centerallign">
+		<%= per.inspirers.count %>Admirers
+		<%= per.admirers.count %>Inspirers
+	</div>
+</div>

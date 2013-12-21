@@ -1,0 +1,8 @@
+var mydiv = document.getElementById('form_of_admiration');
+mydiv.innerHTML="<%= escape_javascript(render('profiles/disadmire'))%>";
+
+var mydiv = document.getElementById('numberofinspirers');
+mydiv.innerHTML="<%= current_sapien.inspirers.count%>";
+
+var mydiv = document.getElementById('numberofadmirers');
+mydiv.innerHTML="<%= @sapien.admirers.count%>";
