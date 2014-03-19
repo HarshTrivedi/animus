@@ -26,7 +26,7 @@ class Sapien < ActiveRecord::Base
   has_many :inspirers, :through => :relationships, :source => :inspirer
   has_many :admirers, :through => :reverse_relationships, :source => :admirer
 
-  after_create :send_welcome_mail
+  # after_create :send_welcome_mail
   def inspired?(inspirer)
     relationships.find_by_inspirer_id(inspirer)
   end
