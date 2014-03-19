@@ -7,10 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<header id="mainNavBar">
+
+<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" id="mainNavBar">
 		<div id="mainTitle"><p>Animus</p></div>
-	<div id="navigationlinks">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 	    <ul class="nav">
+      <div id="navigationlinks">
 		    <a href="../thoughts"><div class="naval">Home</div></a>
 			<% if sapien_signed_in? %>
 			    <a href="../thoughts/my_thoughts"><div class="naval">My thoughts</div></a>
@@ -34,41 +45,44 @@
 			<a href="/sapiens/sign_up"><div class="naval access">Sign up</div></a>
 			<a href="/sapiens/sign_in"><div class="naval access">Sign in</div></a>
 			<% end %>
-	  	</ul>
   	</div>
-	</header>
-	<aside id="left-side-bar">
+	  	</ul>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="../about">About</a>
+        </li>
+      </ul> -->
+    </nav>
+  </div>
+</header>
 		<% if sapien_signed_in? %>
-		<div class="centerallign">
-          		<div id="nav-avatar">
-					<%= image_tag(current_sapien.avatar, :size => "100x100") %>
+			<aside id="left-side-bar">
+				<div class="centerallign">
+		          		<div id="nav-avatar">
+							<%= image_tag(current_sapien.avatar, :size => "100x100") %>
+						</div>
+						<div id="agnomen">
+						<span><%= link_to current_sapien.agnomen, edit_sapien_registration_path %></span>
+						</div>
+						<div class="stats">
+							<a>
+								<%= current_sapien.admirers.count %><br/>
+								<%= link_to "Admirers", admirers_path(current_sapien.id)%>
+							</a>
+						</div>
+						<div class="stats">
+							<a>
+								<span id="numberofinspirers"><%= current_sapien.inspirers.count %></span><br/>
+								<%= link_to "Inspirers", inspirers_path(current_sapien.id)%>
+							</a>
+						</div>
+						<div class="stats" style="padding-top:8px; padding-bottom:10px;">
+		          			<%= link_to "Sign Out", destroy_sapien_session_path, method: :delete %>
+		          		</div>
+						</div>
 				</div>
-				<div id="agnomen">
-				<span><%= link_to current_sapien.agnomen, edit_sapien_registration_path %></span>
-				</div>
-				<div class="stats">
-					<a>
-						<%= current_sapien.admirers.count %><br/>
-						<%= link_to "Admirers", admirers_path(current_sapien.id)%>
-					</a>
-				</div>
-				<div class="stats">
-					<a>
-						<span id="numberofinspirers"><%= current_sapien.inspirers.count %></span><br/>
-						<%= link_to "Inspirers", inspirers_path(current_sapien.id)%>
-					</a>
-				</div>
-				<div class="stats" style="padding-top:8px; padding-bottom:10px;">
-          			<%= link_to "Sign Out", destroy_sapien_session_path, method: :delete %>
-          		</div>
-				</div>
-		</div>
-		<%else%>
-		<div>
-			<h4>PLease sign in</h4>
-		</div>
+			</aside>
 		<%end%>
-	</aside>
 	<div class="pagebody">
 	    <!--<% if flash[:notice]%>
 	    	<div class="alert">

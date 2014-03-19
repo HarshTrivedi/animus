@@ -14,13 +14,20 @@
 #mainNavBar
 {
 	display: block;
-	/*background-color: black;*/
   background-image: url('overlay.png');
-  height: 39px;
+  height: 40px;
+  padding: 0px;
 	color: white;
   box-shadow: 3px 3px 10px black;
 }
 
+
+.nav
+{
+  margin: 1px;
+  background-image: url('overlay.png');
+  border: none;
+}
 .nav-pills > .access
 {
   float: right;
@@ -28,8 +35,6 @@
 
 .shortsearch
 {
-  margin: 2px;
-  margin-right: 20px;
   width: 300px;
   float: right;
   height: 30px;
@@ -52,6 +57,7 @@ body
 .pagebody
 {
   margin-left: 136px;
+  margin-top: 40px;
   padding: 20px;
 }
 
@@ -200,14 +206,17 @@ body
 
 #left-side-bar
 {
-  /*border: 3px solid black;*/
-  float: left;
+  position: fixed;
+  top: 20%;
   margin-top: 0px;
   min-width:136px;
-  min-height:580px;
+  min-height:380px;
+  border-bottom-right-radius: 10px; 
+  border-top-right-radius: 10px; 
+  border-right: 2px solid #111010;
   /*height: inherit;*/
   background-image: url('overlay.png');
-  box-shadow: 0px 5px 10px black; 
+  box-shadow: 0px 0px 10px black; 
 }
 
 #agnomen
@@ -309,4 +318,15 @@ body
   border-radius: 4px;
   overflow: hidden;
   float: left;
+}
+
+
+.customized-form
+{
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 5%;
+  background-color:rgba(255,255,255,0.3);
+  border: 1px solid #dc9083;
+  border-radius: 25px;
 }

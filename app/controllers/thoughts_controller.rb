@@ -32,12 +32,14 @@ class ThoughtsController < ApplicationController
     @thought = Thought.find(params[:id])
     @thought.hearts += 1;
     @thought.save!
-    redirect_to others_thoughts_path
+    respond_to do |format|
+      format.html {redirect_to others_thoughts_path}# others_thoughts.html.erb
+      format.js
+    end
   end
 
   def search
     search_string = params['search']
-    logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     @thoughts = Thought.where(["content like ? and private is ?", "%#{search_string}%", false])
     
     if @thoughts!=nil

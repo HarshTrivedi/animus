@@ -1,21 +1,23 @@
-<%= simple_form_for(@thought) do |f| %>
-  <% if @thought.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@thought.errors.count, "error") %> prohibited this thought from being saved:</h2>
+<div class="customized-form">
+  <%= simple_form_for(@thought) do |f| %>
+    <% if @thought.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@thought.errors.count, "error") %> prohibited this thought from being saved:</h2>
 
-      <ul>
-      <% @thought.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @thought.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.label "Think and Write"%>
+    <%= f.text_area :content, label: 'Think and Write', :size => '55x5'%>
+    
+    <%= f.input :private, label: 'Personal', as: :radio_buttons %>
+    
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <%= f.input :content, label: 'Think and Write' %>
-  
-  <%= f.input :private, label: 'Personal', as: :radio_buttons %>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
